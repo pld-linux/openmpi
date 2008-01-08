@@ -4,10 +4,11 @@ Version:	1.2.5
 Release:	0.1
 License:	BSD
 Group:		Development
-Source0:	http://www.open-mpi.org/software/ompi/v1.2/downloads/openmpi-1.2.5.tar.bz2
+Source0:	http://www.open-mpi.org/software/ompi/v1.2/downloads/%{name}-%{version}.tar.bz2
 # Source0-md5:	c6e82aab6cdcd425bf29217e8317d7dc
 URL:		http://www.open-mpi.org
-BuildRequires:	gcc-gfortran
+Patch0:		%{name}-ksh.patch
+BuildRequires:	gcc-fortran
 Requires:	%{name}-libs = %{version}-%{release}
 Conflicts:	lam
 Conflicts:	mpich
@@ -53,8 +54,17 @@ applications against OpenMPI.
 
 %prep
 %setup -q
+%patch0 -p1
+
+mv -f configure{,.orig}
 
 %build
+if [ ! -f configure -o configure.ac -nt configure ]; then
+	%{__aclocal}
+	%{__autoconf}
+	%{__autoheader}
+	%{__automake}
+fi
 %configure
 %{__make}
 
