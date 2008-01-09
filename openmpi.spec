@@ -8,6 +8,7 @@ Source0:	http://www.open-mpi.org/software/ompi/v1.2/downloads/%{name}-%{version}
 # Source0-md5:	c6e82aab6cdcd425bf29217e8317d7dc
 URL:		http://www.open-mpi.org
 Patch0:		%{name}-ksh.patch
+Patch1:		%{name}-cc.patch
 BuildRequires:	gcc-fortran
 Requires:	%{name}-libs = %{version}-%{release}
 Conflicts:	lam
@@ -55,6 +56,7 @@ applications against OpenMPI.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 mv -f configure{,.orig}
 
