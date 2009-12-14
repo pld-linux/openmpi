@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README INSTALL LICENSE NEWS LICENSE AUTHORS examples/
+%doc README INSTALL LICENSE NEWS AUTHORS examples/
 %attr(755,root,root) %{_bindir}/mpi*
 %attr(755,root,root) %{_bindir}/ompi_info
 %attr(755,root,root) %{_bindir}/opal_wrapper
