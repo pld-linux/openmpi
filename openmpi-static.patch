@@ -1,0 +1,20 @@
+--- openmpi-1.8.3/config/ompi_mca.m4.orig	2014-07-11 20:12:32.000000000 +0200
++++ openmpi-1.8.3/config/ompi_mca.m4	2014-11-30 11:08:47.572444967 +0100
+@@ -160,7 +160,7 @@
+     # resolution (prefer static) is done in the big loop below
+     #
+     AC_MSG_CHECKING([which components should be run-time loadable])
+-    if test "$enable_static" != "no"; then
++    if test "$enable_shared" = "no"; then
+         DSO_all=0
+         msg=none
+     elif test -z "$enable_mca_dso" -o "$enable_mca_dso" = "yes"; then
+@@ -183,7 +183,7 @@
+     fi
+     AC_MSG_RESULT([$msg])
+     unset msg
+-    if test "$enable_static" != "no"; then
++    if test "$enable_shared" = "no"; then
+         AC_MSG_WARN([*** Shared libraries have been disabled (--disable-shared)])
+         AC_MSG_WARN([*** Building MCA components as DSOs automatically disabled])
+     fi

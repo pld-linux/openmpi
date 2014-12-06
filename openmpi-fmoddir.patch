@@ -1,0 +1,29 @@
+--- openmpi-1.8.3/ompi/mpi/fortran/use-mpi-tkr/Makefile.am.orig	2014-07-11 20:12:13.000000000 +0200
++++ openmpi-1.8.3/ompi/mpi/fortran/use-mpi-tkr/Makefile.am	2014-12-06 11:09:26.357354805 +0100
+@@ -87,6 +87,7 @@
+ 
+ MOSTLYCLEANFILES = *.mod
+ DISTCLEANFILES = $(nodist_libmpi_usempi_la_SOURCES)
++fmoddir = $(libdir)
+ 
+ #
+ # Install the generated .mod files.  Unfortunately, each F90 compiler
+@@ -95,14 +96,14 @@
+ 
+ install-exec-hook:
+ 	@ for file in `ls *.mod`; do \
+-	  echo $(INSTALL) $$file $(DESTDIR)$(libdir); \
+-	  $(INSTALL) $$file $(DESTDIR)$(libdir); \
++	  echo $(INSTALL) $$file $(DESTDIR)$(fmoddir); \
++	  $(INSTALL) $$file $(DESTDIR)$(fmoddir); \
+ 	done
+ 
+ uninstall-local:
+ 	@ for file in `ls *.mod`; do \
+-	  echo rm -f $(DESTDIR)$(libdir)/$$file; \
+-	  rm -f $(DESTDIR)$(libdir)/$$file; \
++	  echo rm -f $(DESTDIR)$(fmoddir)/$$file; \
++	  rm -f $(DESTDIR)$(fmoddir)/$$file; \
+ 	done
+ 
+ # if OMPI_BUILD_FORTRAN_USEMPI_TKR_BINDINGS

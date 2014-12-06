@@ -1,0 +1,42 @@
+--- openmpi-1.8.3/ompi/mca/common/sm/Makefile.am.orig	2014-07-11 20:12:25.000000000 +0200
++++ openmpi-1.8.3/ompi/mca/common/sm/Makefile.am	2014-11-28 16:44:11.242185504 +0100
+@@ -79,6 +79,7 @@
+ 
+ if MCA_BUILD_ompi_common_sm_DSO
+ lib_LTLIBRARIES += $(comp_inst)
++libmca_common_sm_la_LIBADD = $(top_builddir)/opal/libopen-pal.la $(top_builddir)/orte/libopen-rte.la
+ else
+ noinst_LTLIBRARIES += $(comp_noinst)
+ endif
+--- openmpi-1.8.3/ompi/mca/common/mx/Makefile.am.orig	2014-11-28 20:23:00.418301191 +0100
++++ openmpi-1.8.3/ompi/mca/common/mx/Makefile.am	2014-11-28 20:23:12.401634021 +0100
+@@ -64,7 +64,7 @@
+ 
+ libmca_common_mx_la_SOURCES = $(headers) $(sources)
+ libmca_common_mx_la_LDFLAGS = -version-info $(libmca_common_mx_so_version) $(common_mx_LDFLAGS)
+-libmca_common_mx_la_LIBADD = $(common_mx_LIBS)
++libmca_common_mx_la_LIBADD = $(common_mx_LIBS) $(top_builddir)/opal/libopen-pal.la
+ 
+ libmca_common_mx_noinst_la_SOURCES = $(libmca_common_mx_la_SOURCES)
+ libmca_common_mx_noinst_la_LDFLAGS = $(common_mx_LDFLAGS)
+--- openmpi-1.8.3/ompi/mca/common/verbs/Makefile.am.orig	2014-11-28 20:23:31.274966563 +0100
++++ openmpi-1.8.3/ompi/mca/common/verbs/Makefile.am	2014-11-28 20:24:25.528297619 +0100
+@@ -52,7 +52,7 @@
+ libmca_common_verbs_la_LDFLAGS =  \
+         -version-info $(libmca_common_verbs_so_version) \
+         $(common_verbs_LDFLAGS)
+-libmca_common_verbs_la_LIBADD =   $(common_verbs_LIBS)
++libmca_common_verbs_la_LIBADD =   $(common_verbs_LIBS) $(top_builddir)/opal/libopen-pal.la $(top_builddir)/orte/libopen-rte.la
+ libmca_common_verbs_noinst_la_SOURCES = $(libmca_common_verbs_la_SOURCES)
+ 
+ # Conditionally install the header files
+--- openmpi-1.8.3/ompi/contrib/libompitrace/Makefile.am.orig	2014-07-11 20:12:20.000000000 +0200
++++ openmpi-1.8.3/ompi/contrib/libompitrace/Makefile.am	2014-11-28 18:15:59.588621007 +0100
+@@ -19,6 +19,7 @@
+ #
+ 
+ lib_LTLIBRARIES = libompitrace.la
++libompitrace_la_LIBADD = $(top_builddir)/ompi/libmpi.la
+ 
+ libompitrace_la_SOURCES = \
+         abort.c \
